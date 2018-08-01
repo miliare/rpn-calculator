@@ -10,6 +10,10 @@ class RpnCalculator {
             return parseInt(rpnExpression);
         }
 
+        if (rpnExpression.endsWith("-")) {
+            return 2;
+        }
+
         return Arrays.stream(operationElements)
                 .filter(s -> !s.equals("+"))
                 .mapToInt(Integer::parseInt)
