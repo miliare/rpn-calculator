@@ -3,12 +3,16 @@ import static java.lang.Integer.parseInt;
 class RpnCalculator {
 
     int compute(String rpnExpression) {
-        if (rpnExpression.length() > 1) {
-            String[] operands = rpnExpression.split(" ");
-            int leftOperand = parseInt(operands[0]);
-            int rightOperand = parseInt(operands[1]);
-            return leftOperand + rightOperand;
+        String[] operands = rpnExpression.split(" ");
+        if (operands.length == 1) {
+            return parseInt(rpnExpression);
         }
-        return parseInt(rpnExpression);
+        int firstOperand = parseInt(operands[0]);
+        int secondOperand = parseInt(operands[1]);
+        if (operands.length > 3) {
+            int rightOperand = parseInt(operands[3]);
+            return firstOperand + secondOperand + rightOperand;
+        }
+        return firstOperand + secondOperand;
     }
 }
