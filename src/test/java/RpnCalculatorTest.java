@@ -27,8 +27,7 @@ public class RpnCalculatorTest {
     }
 
     @Test
-    public void should_return_2_when_compute_expression_1_1_1_ADD_ADD_ADD_1_SUB() {
+    public void should_return_2_when_compute_expression_1_1_1_ADD_ADD_1_SUB() {
         assertThat(rpn.compute("1 1 1 + + 1 -")).isEqualTo(2);
     }
 }
-
