@@ -5,31 +5,27 @@ import java.util.Optional;
 import java.util.function.IntBinaryOperator;
 import java.util.regex.Pattern;
 
-import static java.lang.Integer.parseInt;
+import static java.lang.Integer.valueOf;
 
 class RpnCalculator {
 
     int compute(String rpnExpression) {
 
-        Deque<String> deque = new ArrayDeque<>();
+        Deque<Integer> deque = new ArrayDeque<>();
 
         Pattern.compile(" ")
                 .splitAsStream(rpnExpression)
                 .forEach(operationElement ->
                 {
                     if (Operator.isOperator(operationElement)) {
-                        int result = Operator.of(operationElement).compute(pollToInt(deque), pollToInt(deque));
-                        deque.push(String.valueOf(result));
+                        int result = Operator.of(operationElement).compute(deque.poll(), deque.poll());
+                        deque.push(result);
                     } else {
-                        deque.push(operationElement);
+                        deque.push(valueOf(operationElement));
                     }
                 });
 
-        return pollToInt(deque);
-    }
-
-    private int pollToInt(Deque<String> deque) {
-        return parseInt(deque.poll());
+        return deque.poll();
     }
 
     private enum Operator {
