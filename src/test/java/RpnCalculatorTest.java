@@ -20,5 +20,10 @@ public class RpnCalculatorTest {
     public void should_return_3_when_compute_expression_1_1_ADD_1() {
         assertThat(rpn.compute("1 1 + 1 +")).isEqualTo(3);
     }
+
+    @Test
+    public void should_return_3_when_compute_expression_1_1_1_ADD_ADD() {
+        assertThat(rpn.compute("1 1 1 + +")).isEqualTo(3);
+    }
 }
 
